@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Wordburguer Lanches</title>
+<meta name="description" content="Hambúrgueres artesanais em São Luís. Escolha seus lanches e envie o pedido pelo WhatsApp.">
+<meta name="theme-color" content="#120d08">
+<meta property="og:title" content="Wordburguer Lanches — Sabor que conecta!">
+<meta property="og:description" content="Hambúrgueres artesanais em São Luís. Monte seu pedido e envie pelo WhatsApp.">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@700&family=Oswald:wght@700&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- gradientes usados pelos desenhos dos hambúrgueres (js/burger-art.js) -->
+<svg class="defs" aria-hidden="true"><defs>
+  <linearGradient id="g-bun" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0a24a"/><stop offset=".55" stop-color="#d97a26"/><stop offset="1" stop-color="#a5521a"/></linearGradient>
+  <linearGradient id="g-bunb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e9a250"/><stop offset="1" stop-color="#9c4d18"/></linearGradient>
+  <linearGradient id="g-meat" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6b3418"/><stop offset=".5" stop-color="#4a220e"/><stop offset="1" stop-color="#2e1407"/></linearGradient>
+</defs></svg>
+
+<!-- hero: logo -->
+<section class="hero" id="inicio">
+  <div class="wrap">
+    <svg class="logo" viewBox="0 0 760 432" role="img" aria-label="Wordburguer Lanches. Sabor que conecta!">
+  <defs>
+    <linearGradient id="lg-gold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffcf4a"/><stop offset=".55" stop-color="#f2b01e"/><stop offset="1" stop-color="#d48d0e"/></linearGradient>
+    <linearGradient id="lg-flame" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#f7b524"/><stop offset=".7" stop-color="#f6a81b"/><stop offset="1" stop-color="#ffd257"/></linearGradient>
+    <linearGradient id="lg-silver" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".48" stop-color="#ece8e1"/><stop offset=".52" stop-color="#d3cdc3"/><stop offset="1" stop-color="#f4f0ea"/></linearGradient>
+    <symbol id="lg-star" viewBox="-20 -20 40 40"><polygon points="0.0,-20.0 4.9,-6.8 19.0,-6.2 8.0,2.6 11.8,16.2 0.0,8.4 -11.8,16.2 -8.0,2.6 -19.0,-6.2 -4.9,-6.8" fill="url(#lg-gold)"/></symbol>
+    <g id="lg-spatula">
+      <rect x="-8" y="0" width="16" height="66" rx="7" fill="url(#lg-gold)"/>
+      <path d="M-28 -66 H28 Q34 -66 34 -60 V-6 Q34 4 22 4 H-22 Q-34 4 -34 -6 V-60 Q-34 -66 -28 -66 Z" fill="url(#lg-gold)"/>
+      <rect x="-21" y="-54" width="8" height="42" rx="4" fill="var(--char)"/>
+      <rect x="-4" y="-54" width="8" height="42" rx="4" fill="var(--char)"/>
+      <rect x="13" y="-54" width="8" height="42" rx="4" fill="var(--char)"/>
+    </g>
+  </defs>
+
+  <!-- estrelas -->
+  <use href="#lg-star" x="100" y="82" width="44" height="44"/>
+  <use href="#lg-star" x="616" y="82" width="44" height="44"/>
+  <use href="#lg-star" x="92" y="336" width="40" height="40"/>
+  <use href="#lg-star" x="628" y="336" width="40" height="40"/>
+
+  <!-- espátulas -->
+  <use href="#lg-spatula" transform="translate(236 112) rotate(-32)"/>
+  <use href="#lg-spatula" transform="translate(524 112) rotate(32)"/>
+
+  <!-- chama com hambúrguer -->
+  <path d="M302 170 C280 132 290 98 306 74 C306 94 314 104 322 108 C316 78 330 46 354 26 C351 52 360 66 368 72 C366 44 374 22 384 6 C391 30 402 46 404 72 C412 60 418 46 420 30 C442 54 450 82 442 108 C450 102 456 90 456 74 C472 96 482 130 458 170 Z" fill="url(#lg-flame)"/>
+  <g fill="var(--char)">
+    <path d="M316 124 Q318 84 380 82 Q442 84 444 124 Z"/>
+    <path d="M310 132 H450 V139 Q446 143 440 139 Q434 143 428 139 Q422 143 416 139 Q410 143 404 139 Q398 143 392 139 Q386 143 380 139 Q374 143 368 139 Q362 143 356 139 Q350 143 344 139 Q338 143 332 139 Q326 143 320 139 Q314 143 310 139 Z"/>
+    <rect x="312" y="146" width="136" height="11" rx="5.5"/>
+    <path d="M316 162 H444 Q444 176 430 176 H330 Q316 176 316 162 Z"/>
+  </g>
+  <g fill="url(#lg-flame)">
+    <ellipse cx="352" cy="102" rx="4" ry="2.2" transform="rotate(-20 352 102)"/>
+    <ellipse cx="372" cy="94" rx="4" ry="2.2" transform="rotate(10 372 94)"/>
+    <ellipse cx="394" cy="98" rx="4" ry="2.2" transform="rotate(-10 394 98)"/>
+    <ellipse cx="414" cy="106" rx="4" ry="2.2" transform="rotate(25 414 106)"/>
+    <ellipse cx="380" cy="112" rx="4" ry="2.2"/>
+    <ellipse cx="338" cy="114" rx="4" ry="2.2" transform="rotate(15 338 114)"/>
+    <ellipse cx="424" cy="118" rx="4" ry="2.2" transform="rotate(-15 424 118)"/>
+  </g>
+
+  <!-- nome -->
+  <text x="380" y="306" text-anchor="middle" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="140" textLength="724" lengthAdjust="spacingAndGlyphs" fill="url(#lg-silver)" stroke="#2a2016" stroke-width="2" paint-order="stroke">WORDBURGUER</text>
+
+  <!-- faixa -->
+  <polygon points="146,334 204,334 204,396 146,396 166,365" fill="#b87a0a"/>
+  <polygon points="614,334 556,334 556,396 614,396 594,365" fill="#b87a0a"/>
+  <polygon points="186,384 204,396 204,384" fill="#7a5004"/>
+  <polygon points="574,384 556,396 556,384" fill="#7a5004"/>
+  <rect x="186" y="322" width="388" height="62" fill="url(#lg-gold)"/>
+  <text x="380" y="372" text-anchor="middle" font-family="Oswald, 'Arial Narrow', sans-serif" font-weight="700" font-size="52" letter-spacing="10" textLength="300" lengthAdjust="spacingAndGlyphs" fill="#1a1205">LANCHES</text>
+
+  <!-- slogan -->
+  <text x="380" y="426" text-anchor="middle" font-family="'Barlow Condensed', 'Arial Narrow', sans-serif" font-weight="700" font-size="30" letter-spacing="1.5" textLength="276" lengthAdjust="spacingAndGlyphs" fill="#ffffff">SABOR QUE CONECTA!</text>
+</svg>
+    <p>Hambúrgueres artesanais em São Luís. Escolha seus lanches e envie o pedido pelo WhatsApp.</p>
+    <a href="#artesanais">Ver cardápio</a>
+  </div>
+</section>
+
+<div class="tabs">
+  <div class="wrap">
+    <nav id="tabs" aria-label="Categorias">
+      <a href="#artesanais" class="on">Artesanais</a>
+      <a href="#especiais">Especial</a>
+      <a href="#porcoes">Porções</a>
+      <a href="#bebidas">Bebidas</a>
+    </nav>
+    <button class="cart-btn" id="cartTop" type="button" aria-label="Abrir carrinho"><span class="lbl">Carrinho</span><span class="n" id="cartCount">0</span></button>
+  </div>
+</div>
+
+<main class="wrap">
+  <section class="cat" id="artesanais">
+    <h2>Hambúrgueres artesanais</h2>
+    <p class="sub">Todos vêm no pão brioche selado na chapa, com molho imperius e blend de 70 g levemente defumado. Escolha quantas carnes quer.</p>
+    <div class="list" id="g-art"></div>
+  </section>
+  <section class="cat" id="especiais">
+    <h2>Especial da casa</h2>
+    <div class="list" id="g-esp"></div>
+  </section>
+  <section class="cat" id="porcoes">
+    <h2>Porções</h2>
+    <div class="rows" id="g-por"></div>
+  </section>
+  <section class="cat" id="bebidas">
+    <h2>Bebidas</h2>
+    <div class="rows" id="g-beb"></div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Pedidos e reservas: <b>(98) 98155-2129</b></p>
+    <p>Instagram: <a href="https://www.instagram.com/wordburguers_lanches" target="_blank" rel="noopener">@wordburguers_lanches</a></p>
+    <p>São Luís, MA</p>
+  </div>
+</footer>
+
+<div class="bar" id="bar" hidden><button type="button" id="barBtn"><span id="barTxt">Ver carrinho</span><span class="tot" id="barTot">R$ 0,00</span></button></div>
+
+<div class="scrim" id="scrim" hidden></div>
+<aside class="sheet" id="sheet" hidden role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+  <div class="sheet-in">
+    <div class="sheet-head"><h2 id="sheetTitle">Seu pedido</h2><button class="x" type="button" id="close" aria-label="Fechar carrinho">✕</button></div>
+    <div id="lines"></div>
+    <div class="total"><span>Total dos itens</span><span id="total">R$ 0,00</span></div>
+    <p class="note">A taxa de entrega é combinada com a loja pelo WhatsApp.</p>
+    <form id="form" novalidate>
+      <p class="form-title">Seus dados</p>
+      <label for="nome">Nome<input id="nome" name="nome" autocomplete="name" placeholder="Como devemos te chamar?"></label>
+      <div class="seg" role="radiogroup" aria-label="Entrega ou retirada">
+        <label><input type="radio" name="modo" id="modo-ent" value="Entrega" checked><span>Entrega</span></label>
+        <label><input type="radio" name="modo" id="modo-ret" value="Retirada"><span>Retirada no local</span></label>
+      </div>
+      <label for="end" id="endWrap">Endereço<textarea id="end" name="end" placeholder="Rua, número, bairro e ponto de referência"></textarea></label>
+      <label for="pag">Pagamento
+        <select id="pag" name="pag"><option>Pix</option><option>Cartão na entrega</option><option>Dinheiro</option></select>
+      </label>
+      <label for="troco" id="trocoWrap" hidden>Troco para quanto?<input id="troco" name="troco" inputmode="decimal" placeholder="Ex.: 50"></label>
+      <label for="obs">Observações<textarea id="obs" name="obs" placeholder="Ex.: sem cebola"></textarea></label>
+      <p class="err" id="err" hidden></p>
+      <a class="send" id="send" href="#" target="_blank" rel="noopener" aria-disabled="true">Enviar pedido no WhatsApp</a>
+      <button class="copy" type="button" id="copy">Copiar texto do pedido</button>
+      <p class="phone">O pedido vai para <b>(98) 98155-2129</b></p>
+    </form>
+  </div>
+</aside>
+
+<div class="toast" id="toast" hidden></div>
+
+<script src="js/menu.js" defer></script>
+<script src="js/burger-art.js" defer></script>
+<script src="js/app.js" defer></script>
+</body>
+</html>
