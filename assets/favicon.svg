@@ -1,1 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -20 40 40"><rect x="-20" y="-20" width="40" height="40" rx="9" fill="#120d08"/><polygon points="0.0,-14.0 3.4,-4.8 13.3,-4.3 5.6,1.8 8.3,11.3 0.0,5.9 -8.3,11.3 -5.6,1.8 -13.3,-4.3 -3.4,-4.8" fill="#f2b01e"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="271 -19 220 220">
+  <!-- Favicon Wordburguer: a chama com o hambúrguer da logo, sobre o fundo carvão -->
+  <defs>
+    <linearGradient id="f" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#f7b524"/>
+      <stop offset=".7" stop-color="#f6a81b"/>
+      <stop offset="1" stop-color="#ffd257"/>
+    </linearGradient>
+  </defs>
+  <rect x="271" y="-19" width="220" height="220" rx="48" fill="#120d08"/>
+  <path d="M302 170 C280 132 290 98 306 74 C306 94 314 104 322 108 C316 78 330 46 354 26 C351 52 360 66 368 72 C366 44 374 22 384 6 C391 30 402 46 404 72 C412 60 418 46 420 30 C442 54 450 82 442 108 C450 102 456 90 456 74 C472 96 482 130 458 170 Z" fill="url(#f)" transform="translate(381 186) scale(1.06) translate(-381 -176)"/>
+  <g fill="#120d08">
+    <path d="M314 124 Q316 80 381 78 Q446 80 448 124 Z"/>
+    <rect x="308" y="132" width="146" height="10" rx="5"/>
+    <rect x="310" y="148" width="142" height="12" rx="6"/>
+    <path d="M314 166 H448 Q448 182 432 182 H330 Q314 182 314 166 Z"/>
+  </g>
+</svg>
