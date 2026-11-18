@@ -6,35 +6,64 @@ const $=id=>document.getElementById(id);
 let cart={};
 try{cart=JSON.parse(localStorage.getItem("wb-cart")||"{}")||{}}catch(e){cart={}}
 function save(){try{localStorage.setItem("wb-cart",JSON.stringify(cart))}catch(e){}}
-function itemInfo(k){const [id,s]=k.split("|");const m=MENU.find(x=>x.id===id);if(!m)return null;
-  const size=s!=null?Number(s):null;return {m,size,label:m.name+(size!=null?" "+SIZES[size].toLowerCase():""),price:size!=null?m.p[size]:m.price}}
+/* Chaves do carrinho: hambúrguer "id|tamanho|adicional,adicional"; bebida "id" ou "id|sabor". */
+function itemInfo(k){const [id,a,b]=k.split("|");const m=MENU.find(x=>x.id===id);if(!m)return null;
+  if(m.p!==undefined){if(!m.p)return null;const size=Number(a);if(!(size in m.p))return null;
+    const ex=(b?b.split(","):[]).map(e=>EXTRAS.find(x=>x.id===e));if(ex.some(e=>!e))return null;
+    let label=m.name+(m.single?"":" "+SIZES[size].toLowerCase());if(ex.length)label+=" + "+ex.map(e=>e.name).join(", ");
+    return {m,label,price:m.p[size]+ex.reduce((t,e)=>t+e.price,0)}}
+  if(m.flavors){const f=m.flavors[Number(a)];if(!f)return null;return {m,label:`${m.name} (${f})`,price:m.price}}
+  return {m,label:m.name,price:m.price}}
 function add(k,btn){cart[k]=(cart[k]||0)+1;save();update();
   if(btn){const t=btn.textContent;btn.classList.add("done");btn.textContent="Adicionado";setTimeout(()=>{btn.classList.remove("done");btn.textContent=t},900)}
   toast(itemInfo(k).label+" no carrinho")}
 
+/* janela de adicionais, aberta ao adicionar um hambúrguer */
+let pending=null;
+function openExtras(m,size,btn){
+  pending={m,size,btn};
+  $("exTitle").textContent=m.name+(m.single?"":" "+SIZES[size].toLowerCase());
+  $("exList").innerHTML=EXTRAS.map(e=>`<label class="ex"><input type="checkbox" value="${e.id}"><span>${e.name}</span><b>+ ${brl(e.price)}</b></label>`).join("");
+  exTotal();$("extras").hidden=false;$("scrim").hidden=false;document.body.style.overflow="hidden";$("exOk").focus()}
+function chosenExtras(){return [...$("exList").querySelectorAll("input:checked")].map(i=>i.value)}
+function exTotal(){if(!pending)return;const t=pending.m.p[pending.size]+chosenExtras().reduce((s,id)=>s+EXTRAS.find(e=>e.id===id).price,0);
+  $("exOk").textContent=`Adicionar ao carrinho · ${brl(t)}`}
+function closeExtras(){$("extras").hidden=true;pending=null;if($("sheet").hidden){$("scrim").hidden=true;document.body.style.overflow=""}}
+$("exList").addEventListener("change",exTotal);
+$("exOk").onclick=()=>{const {m,size,btn}=pending;const ex=chosenExtras();closeExtras();add(m.id+"|"+size+(ex.length?"|"+ex.join(","):""),btn)};
+$("exCancel").onclick=closeExtras;$("exClose").onclick=closeExtras;
+
 function render(){
   MENU.forEach(m=>{
-    if(m.p){
+    if(m.p!==undefined){
       const el=document.createElement("article");el.className="burger";
       let size=0;
+      const sizes=m.p&&!m.single;
       el.innerHTML=`<div class="art"></div><div class="info"><h3>${m.name}<span class="num">nº ${m.n}</span></h3><p>${m.desc}</p>
-        <div class="size-pick" role="group" aria-label="Tamanho do ${m.name}">${SIZES.map((s,i)=>`<button type="button" aria-pressed="${i===0}">${s}</button>`).join("")}</div>
-        <button class="add" type="button"></button></div>`;
+        ${sizes?`<div class="size-pick" role="group" aria-label="Tamanho do ${m.name}">${SIZES.map((s,i)=>`<button type="button" aria-pressed="${i===0}">${s}</button>`).join("")}</div>`:""}
+        ${m.p?`<button class="add" type="button"></button>`:`<p class="ask">Valor sob consulta pelo WhatsApp</p>`}</div>`;
       const art=el.querySelector(".art"),addBtn=el.querySelector(".add"),picks=[...el.querySelectorAll(".size-pick button")];
       const paint=(anim)=>{art.innerHTML=burgerSVG(m,size);if(anim)art.firstChild.classList.add("grow");
-        addBtn.textContent=`Adicionar · ${brl(m.p[size])}`;addBtn.setAttribute("aria-label",`Adicionar ${m.name} ${SIZES[size].toLowerCase()}, ${brl(m.p[size])}`);
+        if(addBtn){addBtn.textContent=`Adicionar · ${brl(m.p[size])}`;addBtn.setAttribute("aria-label",`Adicionar ${m.name}${m.single?"":" "+SIZES[size].toLowerCase()}, ${brl(m.p[size])}`)}
         picks.forEach((b,i)=>b.setAttribute("aria-pressed",i===size))};
       picks.forEach((b,i)=>b.onclick=()=>{if(size!==i){size=i;paint(true)}});
-      addBtn.onclick=()=>add(m.id+"|"+size,addBtn);
+      if(addBtn)addBtn.onclick=()=>openExtras(m,size,addBtn);
       paint(false);
       $(m.cat==="art"?"g-art":"g-esp").appendChild(el);
     }else{
-      const r=document.createElement("div");r.className="row";
-      r.innerHTML=`<div><strong>${m.name}</strong><small>${m.desc}</small></div><button class="add" type="button" aria-label="Adicionar ${m.name}, ${brl(m.price)}">+ ${brl(m.price)}</button>`;
-      const b=r.querySelector("button");b.onclick=()=>add(m.id);
-      $(m.cat==="por"?"g-por":"g-beb").appendChild(r);
+      const r=document.createElement("div");r.className="row";let f=0;
+      const many=m.flavors&&m.flavors.length>1;
+      r.innerHTML=`<div><strong>${m.name}</strong>${m.flavors&&!many?`<small>${m.flavors[0]}</small>`:""}
+        ${many?`<div class="flavors" role="group" aria-label="Sabor do ${m.name}">${m.flavors.map((s,i)=>`<button type="button" aria-pressed="${i===0}">${s}</button>`).join("")}</div>`:""}</div>
+        <button class="add" type="button" aria-label="Adicionar ${m.name}, ${brl(m.price)}">+ ${brl(m.price)}</button>`;
+      const fl=[...r.querySelectorAll(".flavors button")];
+      fl.forEach((b,i)=>b.onclick=()=>{f=i;fl.forEach((x,j)=>x.setAttribute("aria-pressed",j===f))});
+      const b=r.querySelector(".add");b.onclick=()=>add(m.flavors?m.id+"|"+f:m.id,b);
+      $("g-beb").appendChild(r);
     }
   });
+  EXTRAS.forEach(e=>{const r=document.createElement("div");r.className="row";
+    r.innerHTML=`<div><strong>${e.name}</strong></div><span class="price">${brl(e.price)}</span>`;$("g-adi").appendChild(r)});
 }
 
 function totals(){let n=0,t=0;for(const k in cart){const i=itemInfo(k);if(!i){delete cart[k];continue}n+=cart[k];t+=cart[k]*i.price}return {n,t}}
@@ -88,8 +117,9 @@ function fallback(txt){const ta=document.createElement("textarea");ta.value=txt;
 let tt;function toast(m){const t=$("toast");t.textContent=m;t.hidden=false;clearTimeout(tt);tt=setTimeout(()=>t.hidden=true,1800)}
 function openSheet(){$("sheet").hidden=false;$("scrim").hidden=false;document.body.style.overflow="hidden";$("close").focus()}
 function closeSheet(){$("sheet").hidden=true;$("scrim").hidden=true;document.body.style.overflow=""}
-$("cartTop").onclick=openSheet;$("barBtn").onclick=openSheet;$("close").onclick=closeSheet;$("scrim").onclick=closeSheet;
-document.addEventListener("keydown",e=>{if(e.key==="Escape")closeSheet()});
+$("cartTop").onclick=openSheet;$("barBtn").onclick=openSheet;$("close").onclick=closeSheet;
+$("scrim").onclick=()=>{if(!$("extras").hidden)closeExtras();else closeSheet()};
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){if(!$("extras").hidden)closeExtras();else closeSheet()}});
 const tabs=[...document.querySelectorAll("#tabs a")];
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)tabs.forEach(a=>a.classList.toggle("on",a.getAttribute("href")==="#"+e.target.id))}),{rootMargin:"-35% 0px -60% 0px"});
 document.querySelectorAll("section.cat").forEach(s=>io.observe(s));

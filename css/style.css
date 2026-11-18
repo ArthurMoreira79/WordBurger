@@ -28,6 +28,7 @@ svg.defs{position:absolute;width:0;height:0}
 .hero .wrap{padding-block:44px 36px;display:flex;flex-direction:column;align-items:center;gap:18px}
 .hero .logo{width:min(560px,100%);height:auto;display:block;overflow:visible}
 .hero p{margin:0;color:var(--toast);max-width:36ch;font-size:1.05rem;text-wrap:balance}
+.hero .slogan{font-family:var(--display);font-size:clamp(1.7rem,5vw,2.4rem);line-height:1.05;letter-spacing:.03em;color:var(--mustard);max-width:22ch}
 .hero a{display:inline-block;background:var(--mustard);color:var(--char);text-decoration:none;font-weight:700;padding:12px 22px;border-radius:999px;margin-top:4px}
 
 /* navegação */
@@ -66,6 +67,27 @@ section.cat{padding-block:40px 4px;scroll-margin-top:64px}
 .row strong{display:block;font-weight:600}
 .row small{color:var(--toast);font-size:.9rem}
 .row .add{align-self:center;flex:none}
+.row .price{flex:none;font-weight:700;color:var(--mustard);font-variant-numeric:tabular-nums}
+.flavors{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.flavors button{border:1px solid var(--line);background:transparent;border-radius:999px;padding:4px 10px;font-size:.85rem;font-weight:600;color:var(--toast)}
+.flavors button[aria-pressed="true"]{background:var(--crumb);border-color:var(--crumb);color:var(--char)}
+.ask{color:var(--mustard)!important;font-weight:600}
+
+/* localização */
+.map{border-radius:16px;overflow:hidden;border:1px solid var(--line);aspect-ratio:16/9;min-height:260px;max-height:420px;width:100%;background:var(--ember)}
+.map iframe{width:100%;height:100%;border:0;display:block}
+.maplink{display:inline-block;margin-top:14px;color:var(--mustard);font-weight:700}
+
+/* janela de adicionais */
+.extras{position:fixed;z-index:42;left:50%;top:50%;transform:translate(-50%,-50%);width:min(440px,calc(100% - 32px));max-height:calc(100vh - 32px);overflow-y:auto;background:var(--ember);border-radius:20px;padding:4px 18px 18px}
+.extras .sheet-head h2{font-size:1.8rem;line-height:1}
+.ex-kicker{margin:0 0 4px;color:var(--toast);font-size:.9rem}
+.ex{display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid var(--line);color:var(--crumb);font-size:1rem;cursor:pointer}
+.ex input{width:20px;height:20px;padding:0;flex:none;accent-color:var(--mustard)}
+.ex span{flex:1}
+.ex b{color:var(--toast);font-weight:600;font-variant-numeric:tabular-nums}
+.ex-ok{width:100%;margin-top:12px;border:0;background:var(--mustard);color:var(--char);border-radius:14px;padding:14px;font-weight:700;font-size:1.02rem;font-variant-numeric:tabular-nums}
+.ex-cancel{width:100%;margin-top:8px}
 
 footer{margin-top:48px;border-top:1px solid var(--line);padding-block:28px 12px;color:var(--toast)}
 footer .wrap{display:flex;flex-wrap:wrap;gap:16px 40px}

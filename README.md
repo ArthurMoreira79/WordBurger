@@ -24,7 +24,7 @@ Os scripts são carregados nessa ordem (`menu.js` → `burger-art.js` → `app.j
 
 ## Alterações comuns
 
-- **Preços, nomes e itens:** `js/menu.js`. Hambúrgueres usam `p: [simples, duplo, triplo]`; porções e bebidas usam `price`.
+- **Preços, nomes e itens:** `js/menu.js`. Hambúrgueres usam `p: [simples, duplo, triplo]` (`null` = sem preço, aparece "Valor sob consulta"); bebidas usam `price` e, se houver, `flavors`. Adicionais ficam em `EXTRAS`.
 - **Número do WhatsApp:** constante `PHONE` em `js/menu.js` (só dígitos, com 55 + DDD). O número exibido no rodapé e no carrinho fica em `index.html`.
 - **Cores e fontes:** variáveis no topo de `css/style.css`.
 - **Ingredientes desenhados:** cada camada (queijo, bacon, ovo…) é uma entrada do objeto `L` em `js/burger-art.js`.

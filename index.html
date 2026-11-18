@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Wordburguer Lanches</title>
-<meta name="description" content="Hambúrgueres artesanais em São Luís. Escolha seus lanches e envie o pedido pelo WhatsApp.">
+<meta name="description" content="Hambúrguer sob medida, do tamanho da sua fome. Hambúrgueres artesanais em São Luís. Escolha seus lanches e envie o pedido pelo WhatsApp.">
 <meta name="theme-color" content="#120d08">
 <meta property="og:title" content="Wordburguer Lanches — Sabor que conecta!">
 <meta property="og:description" content="Hambúrgueres artesanais em São Luís. Monte seu pedido e envie pelo WhatsApp.">
@@ -85,6 +85,7 @@
   <!-- slogan -->
   <text x="380" y="426" text-anchor="middle" font-family="'Barlow Condensed', 'Arial Narrow', sans-serif" font-weight="700" font-size="30" letter-spacing="1.5" textLength="276" lengthAdjust="spacingAndGlyphs" fill="#ffffff">SABOR QUE CONECTA!</text>
 </svg>
+    <p class="slogan">Hambúrguer sob medida, do tamanho da sua fome</p>
     <p>Hambúrgueres artesanais em São Luís. Escolha seus lanches e envie o pedido pelo WhatsApp.</p>
     <a href="#artesanais">Ver cardápio</a>
   </div>
@@ -95,8 +96,9 @@
     <nav id="tabs" aria-label="Categorias">
       <a href="#artesanais" class="on">Artesanais</a>
       <a href="#especiais">Especial</a>
-      <a href="#porcoes">Porções</a>
       <a href="#bebidas">Bebidas</a>
+      <a href="#adicionais">Adicionais</a>
+      <a href="#local">Localização</a>
     </nav>
     <button class="cart-btn" id="cartTop" type="button" aria-label="Abrir carrinho"><span class="lbl">Carrinho</span><span class="n" id="cartCount">0</span></button>
   </div>
@@ -105,20 +107,27 @@
 <main class="wrap">
   <section class="cat" id="artesanais">
     <h2>Hambúrgueres artesanais</h2>
-    <p class="sub">Todos vêm no pão brioche selado na chapa, com molho imperius e blend de 70 g levemente defumado. Escolha quantas carnes quer.</p>
+    <p class="sub">Escolha simples, duplo ou triplo. Ao adicionar, você pode incluir adicionais.</p>
     <div class="list" id="g-art"></div>
   </section>
   <section class="cat" id="especiais">
     <h2>Especial da casa</h2>
     <div class="list" id="g-esp"></div>
   </section>
-  <section class="cat" id="porcoes">
-    <h2>Porções</h2>
-    <div class="rows" id="g-por"></div>
-  </section>
   <section class="cat" id="bebidas">
     <h2>Bebidas</h2>
     <div class="rows" id="g-beb"></div>
+  </section>
+  <section class="cat" id="adicionais">
+    <h2>Adicionais</h2>
+    <p class="sub">Escolha os adicionais na hora de colocar o hambúrguer no carrinho.</p>
+    <div class="rows" id="g-adi"></div>
+  </section>
+  <section class="cat" id="local">
+    <h2>Onde estamos</h2>
+    <p class="sub">R. da Glória, 49 – Monte Castelo, São Luís – MA, 65035-260</p>
+    <div class="map"><iframe title="Mapa da Wordburguer Lanches" src="https://maps.google.com/maps?q=-2.5310719,-44.2813186&amp;z=17&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div>
+    <a class="maplink" href="https://maps.app.goo.gl/2rdJ7Vf2umYk3cSc9" target="_blank" rel="noopener">Abrir no Google Maps</a>
   </section>
 </main>
 
@@ -126,7 +135,7 @@
   <div class="wrap">
     <p>Pedidos e reservas: <b>(98) 98155-2129</b></p>
     <p>Instagram: <a href="https://www.instagram.com/wordburguers_lanches" target="_blank" rel="noopener">@wordburguers_lanches</a></p>
-    <p>São Luís, MA</p>
+    <p>R. da Glória, 49 – Monte Castelo, São Luís – MA</p>
   </div>
 </footer>
 
@@ -159,6 +168,13 @@
     </form>
   </div>
 </aside>
+
+<div class="extras" id="extras" hidden role="dialog" aria-modal="true" aria-labelledby="exTitle">
+  <div class="sheet-head"><div><p class="ex-kicker">Deseja algum adicional?</p><h2 id="exTitle"></h2></div><button class="x" type="button" id="exClose" aria-label="Fechar adicionais">✕</button></div>
+  <div id="exList"></div>
+  <button class="ex-ok" type="button" id="exOk">Adicionar ao carrinho</button>
+  <button class="copy ex-cancel" type="button" id="exCancel">Cancelar</button>
+</div>
 
 <div class="toast" id="toast" hidden></div>
 

@@ -21,6 +21,9 @@ const L={
  calabresa:{h:13,svg:()=>[6,42,78,114,150].map(x=>`<ellipse cx="${x+22}" cy="7" rx="22" ry="7.5" fill="#a33a26" stroke="#6e2216" stroke-width="1.5"/>${[8,16,26,34].map(d=>`<circle cx="${x+d}" cy="${5+(d%4)}" r="1.8" fill="#efb796"/>`).join("")}`).join("")},
  bacon:{h:13,svg:()=>`<path d="${wave(7,5,20,2,198)}" stroke="#8f2c1b" stroke-width="11" fill="none" stroke-linecap="round"/><path d="${wave(6,5,20,2,198)}" stroke="#f0bba0" stroke-width="2.5" fill="none" stroke-dasharray="16 6"/>`},
  lombo:{h:12,svg:()=>[8,70,132].map(x=>`<rect x="${x}" y="0" width="62" height="13" rx="4" fill="#c9705e" stroke="#8e4436" stroke-width="1.5"/><path d="M${x+6} 4 H${x+56}" stroke="#f3b9aa" stroke-width="2.5" stroke-linecap="round" opacity=".85"/>`).join("")},
+ coalho:{h:9,svg:()=>`<rect x="12" y="0" width="176" height="10" rx="3" fill="#f3dfa8"/>${[24,52,80,108,136,164].map(x=>`<path d="M${x} 2 l10 6" stroke="#a8641e" stroke-width="3" stroke-linecap="round" opacity=".75"/>`).join("")}`},
+ ham:{h:9,svg:()=>`<path d="M10 5 Q14 -1 100 1 Q186 -1 190 5 Q186 11 100 10 Q14 11 10 5 Z" fill="#f2a3a0"/><path d="M26 4 H174" stroke="#fcd0cc" stroke-width="2" stroke-linecap="round"/>`},
+ redonion:{h:8,svg:()=>[14,58,102,146].map(x=>`<ellipse cx="${x+20}" cy="4" rx="20" ry="4" fill="none" stroke="#9b3b78" stroke-width="3"/>`).join("")},
  cream:{h:11,svg:()=>`<path d="M14 8 Q24 -3 48 3 Q70 -4 94 3 Q120 -4 144 3 Q168 -3 186 8 Q184 13 100 13 Q16 13 14 8 Z" fill="#fffaf0"/>${drips("#fffaf0",10,[60,128],6)}`}
 };
 function burgerSVG(m,size){
